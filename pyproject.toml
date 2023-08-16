@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pythonproject1"
+version = "0.1.0"
+description = ""
+authors = ["nikzdanovich <nikzdanovich@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^7.4.0"
+black = "^23.7.0"
+selenium = "^4.11.2"
+webdriver-manager = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests/pipelines", ]
+markers = [
+    "SMOKE: mark test as part of the SMOKE run",
+]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
