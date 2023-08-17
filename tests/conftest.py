@@ -2,6 +2,7 @@ import os
 
 import pytest
 from src.utils.webdriver_manager import DriverManager
+from src.pages.google_search_page import GoogleSearchPage
 
 
 def pytest_addoption(parser):
