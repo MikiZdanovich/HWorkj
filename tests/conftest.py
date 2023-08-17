@@ -29,3 +29,8 @@ def driver(request):
     _driver = DriverManager.get_driver(driver_name, is_headless)
     yield _driver
     _driver.quit()
+
+
+@pytest.fixture()
+def google_search_page(driver):
+    return GoogleSearchPage(driver)
