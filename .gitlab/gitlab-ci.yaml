@@ -1,0 +1,33 @@
+image: python:3.11
+
+
+stages:
+  - test
+
+
+cache:
+  paths:
+    - .venv/
+    - .cache/pypoetry
+
+.install_poetry: &install_poetry
+  - pip install poetry
+  - poetry config virtualenvs.create true
+  - poetry config virtualenvs.in-project true
+
+
+.install_dependencies: &install_dependencies
+  - *install_poetry
+  - if [ -f "poetry.lock" ]; then poetry install --with main; else poetry update --with main; fi
+
+.base_test_run: &base_test_run
+  stage: test
+  before_script:
+    *install_dependencies
+  script:
+    - poetry run pytest
+  artifacts:
+    paths:
+      - allure-report/
+    expire_in: 1 week
+    when: always
